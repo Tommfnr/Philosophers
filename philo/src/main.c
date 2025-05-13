@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:05:54 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/13 11:25:43 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/13 13:32:31 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,6 @@ int main(int argc, char **argv)
 } */
 
 
-
-
-// void init_data(t_data data, int argc, char **argv)
-// {
-// 	data.argc = argc;
-// 	data.argv = argv;
-// }
 
 int main(int argc, char **argv)
 {

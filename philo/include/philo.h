@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:05:59 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/13 13:14:38 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/13 13:33:47 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,8 @@ typedef struct s_data
 	
 }			t_data;
 
-long	ft_atoi(const char *nptr);
-
 void 	parsing(t_data data);
+void 	init_data(t_data data);
 
 
 

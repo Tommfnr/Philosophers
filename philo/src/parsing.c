@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:33:32 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/13 13:20:36 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/13 13:44:52 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void parsing(t_data data)
 		error_usage_and_exit(Error);
 	while (i < data.argc)
 	{
-		if (ft_isnumber(data.argv[i]) == Error)
+		if (ft_isnumber(data.argv[i]) == Error || ft_atoi(data.argv[i]) < 0)
 			error_usage_and_exit(Error);
 		i++;
 	}
