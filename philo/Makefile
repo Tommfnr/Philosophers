@@ -6,7 +6,7 @@
 #    By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/05 17:04:06 by tfournie          #+#    #+#              #
-#    Updated: 2025/05/13 13:33:10 by tfournie         ###   ########.fr        #
+#    Updated: 2025/05/13 15:21:07 by tfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRC_FILES = main.c \
 			init.c \
 			lib_utils/ft_atoi.c \
 			lib_utils/ft_isdigit.c \
-			lib_utils/ft_isnumber.c \
+			lib_utils/ft_isnumber_pos.c \
 
 
 SRC_PATH = src
@@ -34,8 +34,6 @@ OBJ_DIR = build
 OBJ = $(addprefix $(OBJ_DIR)/,$(SRC_FILES:.c=.o))
 DEPS = $(OBJ:.o=.d)
 
-
-HEADER = include/philo.h
 
 $(shell mkdir -p $(OBJ_DIR))
 
@@ -50,7 +48,7 @@ $(NAME): $(OBJ) Makefile
 	@$(CC) $(OBJ) -o $(NAME)
 	@echo "${GREEN}Le programme est prêt !${RESET}"
 
-$(OBJ_DIR)/%.o: $(SRC_PATH)/%.c Makefile $(HEADER)
+$(OBJ_DIR)/%.o: $(SRC_PATH)/%.c Makefile
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDE_PATH) -c $< -o $@
 
