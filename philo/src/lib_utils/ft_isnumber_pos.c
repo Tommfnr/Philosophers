@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 11:48:28 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/13 15:36:05 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/13 16:33:36 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ int	ft_isnumber_pos(const char *str)
 	i = 0;
 	num = ft_atoi(str);
 	if (str[i] == '-')
-		return (ERROR);
+		return (1);
 	if (str[i] == '+')
 		i++;
 	if (num < INT_MIN || num > INT_MAX)
-		return (ERROR);
+		return (1);
 	while (str[i] != '\0')
 	{
 		if (!ft_isdigit(str[i]))
-			return (ERROR);
+			return (1);
 		i++;
 	}
-	return (VALID);
+	return (0);
 }

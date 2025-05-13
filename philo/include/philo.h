@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:05:59 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/13 16:02:02 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/13 17:25:03 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@
 # include <stdlib.h>
 # include <sys/time.h>
 
-# define ERROR 1
-# define VALID 0
+typedef enum e_output
+{
+	ERROR = 1,
+	VALID = 0
+}				t_output;
 
 typedef struct s_data
 {
@@ -46,12 +49,12 @@ typedef struct s_philo
 	t_data		data;
 	int			id;
 	pthread_t	pt;
-	bool		fork_L;
-	bool		*fork_R;
+	bool		fork_l;
+	bool		*fork_r;
 }				t_philo;
 
 int				parsing(t_data data);
-void			init_data(t_data data);
-int				init_philo(t_philo *philo, t_data data);
+void			init_data(t_data *data);
+t_philo			*init_philo(t_data *data);
 
 #endif

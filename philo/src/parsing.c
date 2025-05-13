@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:33:32 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/13 16:16:21 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/13 17:25:37 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 void	p_error_usage(void)
 {
-	printf("ERROR with usage:\n./philo \n| (int > 1) <number_of_philosophers>\n");
-	printf("| (int) <time_to_die>\n| (int) <time_to_eat>\n");
-	printf("| (int) <time_to_sleep>\n");
+	printf("ERROR with usage:\n./philo \n");
+	printf("| (int > 1) <number_of_philosophers>\n| (int) <time_to_die>\n");
+	printf("| (int) <time_to_eat>\n| (int) <time_to_sleep>\n");
 	printf("| (optional: (int) <number_of_times_each_philosopher_must_eat>)\n");
 }
 

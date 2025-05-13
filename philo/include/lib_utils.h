@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 11:52:56 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/13 15:36:00 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/13 16:41:51 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 
 # include <limits.h>
 # include <stdbool.h>
-
-# define ERROR 1
-# define VALID 0
 
 long	ft_atoi(const char *nptr);
 int		ft_isdigit(int c);
