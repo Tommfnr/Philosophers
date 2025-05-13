@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:05:59 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/13 15:27:30 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/13 15:39:45 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,13 @@
 // # define BLUE "\033[34m"
 // # define RESET "\033[0m"
 
-
+# include <limits.h>
 # include <pthread.h>
 # include <stdio.h>
 # include <sys/time.h>
-# include <limits.h>
 
-# include <stdlib.h>
-
-# define Error 1
-# define Valid 0
+# define ERROR 1
+# define VALID 0
 
 typedef struct s_data
 {
@@ -36,15 +33,13 @@ typedef struct s_data
 	char	**argv;
 	int		nb_philo;
 	int		time_die;
-	int 	time_eat;
+	int		time_eat;
 	int		time_sleep;
-	int 	nb_time;
-	
+	int		nb_time;
+
 }			t_data;
 
-int 	parsing(t_data data);
-void 	init_data(t_data data);
-
-
+int			parsing(t_data data);
+void		init_data(t_data data);
 
 #endif
