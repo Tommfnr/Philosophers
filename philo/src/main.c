@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:05:54 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/13 17:23:10 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/13 18:09:13 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int argc, char **argv)
 	philo = init_philo(&data);
 	if (philo == NULL)
 		return (ERROR);
+	init_threads(philo);
 	free(philo);
 	return (0);
 }

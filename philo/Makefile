@@ -6,7 +6,7 @@
 #    By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/05 17:04:06 by tfournie          #+#    #+#              #
-#    Updated: 2025/05/13 17:23:30 by tfournie         ###   ########.fr        #
+#    Updated: 2025/05/13 18:05:08 by tfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ INCLUDE_PATH = -I./include
 SRC_FILES = main.c \
 			parsing.c \
 			init.c \
+			routine.c \
 			lib_utils/ft_atoi.c \
 			lib_utils/ft_isdigit.c \
 			lib_utils/ft_isnumber_pos.c \

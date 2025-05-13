@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 13:32:23 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/13 17:26:41 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/13 18:21:09 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_philo	*init_philo(t_data *data)
 	while (i < data->nb_philo)
 	{
 		philo[i].data = *data;
-		philo[i].id = i;
+		philo[i].id = i + 1;
 		philo[i].pt = -1;
 		philo[i].fork_l = true;
 		if (i == 0)
@@ -47,4 +47,26 @@ t_philo	*init_philo(t_data *data)
 		i++;
 	}
 	return (philo);
+}
+
+void	init_threads(t_philo *philo)
+{
+	int	i;
+
+	i = 0;
+	while (i < philo[0].data.nb_philo)
+	{
+		if (pthread_create(&philo[i].pt, NULL, routine, &philo[i]) != 0)
+		{
+			perror("Erreur lors de la création du thread");
+			exit(EXIT_FAILURE);
+		}
+		i++;
+	}
+	i = 0;
+	while (i < philo[0].data.nb_philo)
+	{
+		pthread_join(philo[i].pt, NULL);
+		i++;
+	}
 }

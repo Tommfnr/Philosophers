@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:05:59 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/13 17:25:03 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/13 18:16:52 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/time.h>
+# include <unistd.h>
 
 typedef enum e_output
 {
@@ -54,7 +55,11 @@ typedef struct s_philo
 }				t_philo;
 
 int				parsing(t_data data);
+
 void			init_data(t_data *data);
 t_philo			*init_philo(t_data *data);
+void			init_threads(t_philo *philo);
+
+void			*routine(void *arg);
 
 #endif
