@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:05:59 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/05 18:03:25 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/13 13:14:38 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <pthread.h>
 # include <stdio.h>
 # include <sys/time.h>
+# include <limits.h>
 
 //a enlever
 #include <stdlib.h>
@@ -36,11 +37,25 @@
 // 	BLUE
 // }	t_error;
 
+# define Error 1
+# define Valid 0
+
 typedef struct s_data
 {
 	int		argc;
 	char	**argv;
 	int		nb_philo;
+	int		time_die;
+	int 	time_eat;
+	int		time_sleep;
+	int 	nb_time;
+	
 }			t_data;
+
+long	ft_atoi(const char *nptr);
+
+void 	parsing(t_data data);
+
+
 
 #endif

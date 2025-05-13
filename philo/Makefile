@@ -6,12 +6,12 @@
 #    By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/05 17:04:06 by tfournie          #+#    #+#              #
-#    Updated: 2025/05/05 17:20:44 by tfournie         ###   ########.fr        #
+#    Updated: 2025/05/13 12:05:41 by tfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror -MMD -MP
 NAME = philo
 MAKEFLAGS += --no-print-directory
 
@@ -19,6 +19,10 @@ MAKEFLAGS += --no-print-directory
 INCLUDE_PATH = -I./include
 
 SRC_FILES = main.c \
+			parsing.c \
+			lib_utils/ft_atoi.c \
+			lib_utils/ft_isdigit.c \
+			lib_utils/ft_isnumber.c \
 
 
 SRC_PATH = src
@@ -34,7 +38,6 @@ HEADER = include/philo.h
 
 $(shell mkdir -p $(OBJ_DIR))
 
-
 GREEN = \033[32m
 RED = \033[31m
 RESET = \033[0m
@@ -47,7 +50,7 @@ $(NAME): $(OBJ) Makefile
 	@echo "${GREEN}Le programme est prêt !${RESET}"
 
 $(OBJ_DIR)/%.o: $(SRC_PATH)/%.c Makefile $(HEADER)
-	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDE_PATH) -c $< -o $@
 
 

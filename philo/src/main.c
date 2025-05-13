@@ -6,14 +6,14 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:05:54 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/05 17:28:19 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/13 11:25:43 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "philo.h"
 
 
-void *print_message(void *arg) {
+/* void *print_message(void *arg) {
     char *message = (char *)arg;
     printf("Message du thread : %s\n", message);
     return NULL;
@@ -30,5 +30,24 @@ int main(int argc, char **argv)
 
 	printf(GREEN"Working\n"RESET);
 	printf("argc: %d, name: %s", argc, argv[0]);
+	return (0);
+} */
+
+
+
+
+// void init_data(t_data data, int argc, char **argv)
+// {
+// 	data.argc = argc;
+// 	data.argv = argv;
+// }
+
+int main(int argc, char **argv)
+{
+	t_data data;
+	
+	data.argc = argc;
+	data.argv = argv;
+	parsing(data);
 	return (0);
 }
