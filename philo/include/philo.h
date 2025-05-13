@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:05:59 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/13 15:39:45 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/13 16:02:02 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@
 
 # include <limits.h>
 # include <pthread.h>
+# include <stdbool.h>
 # include <stdio.h>
+# include <stdlib.h>
 # include <sys/time.h>
 
 # define ERROR 1
@@ -29,17 +31,27 @@
 
 typedef struct s_data
 {
-	int		argc;
-	char	**argv;
-	int		nb_philo;
-	int		time_die;
-	int		time_eat;
-	int		time_sleep;
-	int		nb_time;
+	int			argc;
+	char		**argv;
+	int			nb_philo;
+	int			time_die;
+	int			time_eat;
+	int			time_sleep;
+	int			nb_time;
 
-}			t_data;
+}				t_data;
 
-int			parsing(t_data data);
-void		init_data(t_data data);
+typedef struct s_philo
+{
+	t_data		data;
+	int			id;
+	pthread_t	pt;
+	bool		fork_L;
+	bool		*fork_R;
+}				t_philo;
+
+int				parsing(t_data data);
+void			init_data(t_data data);
+int				init_philo(t_philo *philo, t_data data);
 
 #endif
