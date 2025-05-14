@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:05:59 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/14 12:33:21 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/14 12:47:33 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,15 @@ typedef enum e_output
 	ERROR = 1,
 	VALID = 0
 }				t_output;
+
+typedef enum e_logs
+{
+	FORK,
+	EAT,
+	SLEEP,
+	THINKING,
+	DIE
+}				t_logs;
 
 typedef struct s_data
 {
