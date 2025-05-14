@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:05:59 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/14 12:47:33 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/14 15:05:53 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef enum e_output
 {
 	ERROR = 1,
 	VALID = 0
-}				t_output;
+}					t_output;
 
 typedef enum e_logs
 {
@@ -40,37 +40,42 @@ typedef enum e_logs
 	SLEEP,
 	THINKING,
 	DIE
-}				t_logs;
+}					t_logs;
 
 typedef struct s_data
 {
-	int			argc;
-	char		**argv;
-	int			nb_philo;
-	int			time_die;
-	int			time_eat;
-	int			time_sleep;
-	int			nb_time_eat;
-	size_t		timer;
+	int				argc;
+	char			**argv;
+	int				nb_philo;
+	int				time_die;
+	int				time_eat;
+	int				time_sleep;
+	int				nb_time_eat;
+	size_t			timer;
+	bool			dead;
 
-}				t_data;
+}					t_data;
 
 typedef struct s_philo
 {
-	t_data		data;
-	int			id;
-	pthread_t	pt;
-	bool		fork_l;
-	bool		*fork_r;
-	size_t		timer_to_die;
-	size_t		timer_to_eat;
-	size_t		timer_to_sleep;
-}				t_philo;
+	t_data			data;
+	int				id;
+	pthread_t		pt;
+	bool			fork_l;
+	bool			*fork_r;
+	size_t			timer_to_die;
+	size_t			timer_to_eat;
+	size_t			timer_to_sleep;
+	pthread_mutex_t	mu_time;
+}					t_philo;
 
-int				parsing(t_data data);
+void				p_error_usage(void);
+void				destroy_and_free(t_philo *philo);
 
-t_philo			*init_main(t_data *data);
+int					parsing(t_data data);
 
-void			*routine(void *arg);
+t_philo				*init_main(t_data *data);
+
+void				*routine(void *arg);
 
 #endif

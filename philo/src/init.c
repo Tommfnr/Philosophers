@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 13:32:23 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/14 12:34:44 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/14 14:59:20 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	init_data(t_data *data)
 	else
 		data->nb_time_eat = -1;
 	data->timer = 0;
+	data->dead = 0;
 }
 
 static t_philo	*init_philo(t_data *data)
@@ -50,6 +51,11 @@ static t_philo	*init_philo(t_data *data)
 	return (philo);
 }
 
+static void	init_mutex(t_philo *philo)
+{
+	pthread_mutex_init(&(philo->mu_time), NULL);
+}
+
 static int	init_threads(t_philo *philo)
 {
 	int	i;
@@ -59,7 +65,7 @@ static int	init_threads(t_philo *philo)
 	{
 		if (pthread_create(&philo[i].pt, NULL, routine, &philo[i]) != 0)
 		{
-			printf("Erreur lors de la création du thread");
+			printf("Error with the creation of the thread");
 			return (ERROR);
 		}
 		i++;
@@ -67,7 +73,11 @@ static int	init_threads(t_philo *philo)
 	i = 0;
 	while (i < philo[0].data.nb_philo)
 	{
-		pthread_join(philo[i].pt, NULL);
+		if (pthread_join(philo[i].pt, NULL) != 0)
+		{
+			printf("Error with the join of the thread");
+			return (ERROR);
+		}
 		i++;
 	}
 	return (VALID);
@@ -81,6 +91,11 @@ t_philo	*init_main(t_data *data)
 	philo = init_philo(data);
 	if (philo == NULL)
 		return (NULL);
-	init_threads(philo);
+	init_mutex(philo);
+	if (init_threads(philo) == ERROR)
+	{
+		free(philo);
+		return (NULL);
+	}
 	return (philo);
 }

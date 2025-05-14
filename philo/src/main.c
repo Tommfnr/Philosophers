@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:05:54 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/14 12:33:54 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/14 15:06:25 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ int	main(int argc, char **argv)
 	if (philo == NULL)
 		return (ERROR);
 	data.timer = get_current_time();
-	free(philo);
+	destroy_and_free(philo);
 	return (0);
 }
