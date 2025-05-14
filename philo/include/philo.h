@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:05:59 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/14 15:05:53 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/14 17:39:16 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <unistd.h>
-
-typedef enum e_output
-{
-	ERROR = 1,
-	VALID = 0
-}					t_output;
 
 typedef enum e_logs
 {
@@ -53,12 +47,15 @@ typedef struct s_data
 	int				nb_time_eat;
 	size_t			timer;
 	bool			dead;
-
+	pthread_mutex_t	mu_time;
+	pthread_mutex_t	mu_fork_l;
+	pthread_mutex_t	mu_fork_r;
+	pthread_mutex_t	mu_dead;
 }					t_data;
 
 typedef struct s_philo
 {
-	t_data			data;
+	t_data			*data;
 	int				id;
 	pthread_t		pt;
 	bool			fork_l;
@@ -66,7 +63,6 @@ typedef struct s_philo
 	size_t			timer_to_die;
 	size_t			timer_to_eat;
 	size_t			timer_to_sleep;
-	pthread_mutex_t	mu_time;
 }					t_philo;
 
 void				p_error_usage(void);

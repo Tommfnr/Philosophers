@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:00:25 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/14 15:07:33 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/14 15:45:25 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	p_error_usage(void)
 
 void	destroy_and_free(t_philo *philo)
 {
-	pthread_mutex_destroy(&(philo->mu_time));
+	pthread_mutex_destroy(&(philo->data->mu_dead));
 	if (philo != NULL)
 		free(philo);
 }
