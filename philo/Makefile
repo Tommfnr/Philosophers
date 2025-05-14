@@ -6,7 +6,7 @@
 #    By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/05 17:04:06 by tfournie          #+#    #+#              #
-#    Updated: 2025/05/13 18:05:08 by tfournie         ###   ########.fr        #
+#    Updated: 2025/05/14 12:10:33 by tfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC_FILES = main.c \
 			lib_utils/ft_atoi.c \
 			lib_utils/ft_isdigit.c \
 			lib_utils/ft_isnumber_pos.c \
+			lib_utils/ft_time.c \
 
 
 SRC_PATH = src

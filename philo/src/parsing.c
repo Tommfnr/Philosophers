@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:33:32 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/13 17:25:37 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/14 11:47:02 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	parsing(t_data data)
 		}
 		i++;
 	}
-	if (ft_atoi(data.argv[1]) < 2)
+	if (ft_atoi(data.argv[1]) < 1)
 	{
 		p_error_usage();
 		return (ERROR);

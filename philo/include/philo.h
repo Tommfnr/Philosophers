@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:05:59 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/13 18:16:52 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/14 12:33:21 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ typedef struct s_data
 	int			time_die;
 	int			time_eat;
 	int			time_sleep;
-	int			nb_time;
+	int			nb_time_eat;
+	size_t		timer;
 
 }				t_data;
 
@@ -52,13 +53,14 @@ typedef struct s_philo
 	pthread_t	pt;
 	bool		fork_l;
 	bool		*fork_r;
+	size_t		timer_to_die;
+	size_t		timer_to_eat;
+	size_t		timer_to_sleep;
 }				t_philo;
 
 int				parsing(t_data data);
 
-void			init_data(t_data *data);
-t_philo			*init_philo(t_data *data);
-void			init_threads(t_philo *philo);
+t_philo			*init_main(t_data *data);
 
 void			*routine(void *arg);
 
