@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:29:02 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/14 12:58:26 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/14 13:19:36 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ void	print_logs(t_philo *philo, t_logs log)
 
 	current_time = get_current_time() - philo->data.timer;
 	if (log == FORK)
-		printf("%d %d has taken a fork\n", current_time, philo->id);
+		printf("%zu %d has taken a fork\n", current_time, philo->id);
 	if (log == EAT)
-		printf("%d %d is eating\n", current_time, philo->id);
+		printf("%zu %d is eating\n", current_time, philo->id);
 	if (log == SLEEP)
-		printf("%d %d is sleeping\n", current_time, philo->id);
+		printf("%zu %d is sleeping\n", current_time, philo->id);
 	if (log == THINKING)
-		printf("%d %d is thinking\n", current_time, philo->id);
+		printf("%zu %d is thinking\n", current_time, philo->id);
 	if (log == DIE)
-		printf("%d %d died\n", current_time, philo->id);
+		printf("%zu %d died\n", current_time, philo->id);
 }
 
 void	*routine(void *arg)
