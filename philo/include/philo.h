@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:05:59 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/19 17:45:02 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/19 18:14:13 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_data
 	int				time_sleep;
 	int				nb_eat;
 	size_t			timer;
-	bool			dead;
+	int				dead;
 	pthread_mutex_t	mu_time;
 	pthread_mutex_t	mu_fork_l;
 	pthread_mutex_t	mu_fork_r;

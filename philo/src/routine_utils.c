@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:48:15 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/19 18:07:35 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/19 18:17:58 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ int	all_philo_alive(t_philo *philo)
 		pthread_mutex_unlock(&philo->data->mu_dead);
 	}
 	pthread_mutex_lock(&philo->data->mu_dead);
-	if (philo->data->dead == true)
+	if (philo->data->dead > 0)
 	{
 		pthread_mutex_unlock(&philo->data->mu_dead);
+		print_logs(philo, DIE);
 		return (philo->id);
 	}
 	pthread_mutex_unlock(&philo->data->mu_dead);
