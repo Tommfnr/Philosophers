@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 12:05:15 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/14 12:30:37 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/19 16:51:46 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	ft_usleep(size_t ms)
 {
 	size_t	start;
 
+	if (ms == 0)
+		return ;
 	start = get_current_time();
 	while ((get_current_time() - start) < ms)
 		usleep(500);

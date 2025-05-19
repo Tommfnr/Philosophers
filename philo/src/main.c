@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:05:54 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/14 17:25:54 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/19 18:08:34 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	main(int argc, char **argv)
 		{
 			printf("dead in main\n\n");
 			pthread_mutex_unlock(&data.mu_dead);
-			return (0);
 			break;
 		}
 		pthread_mutex_unlock(&data.mu_dead);	

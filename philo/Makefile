@@ -6,7 +6,7 @@
 #    By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/05 17:04:06 by tfournie          #+#    #+#              #
-#    Updated: 2025/05/14 15:07:21 by tfournie         ###   ########.fr        #
+#    Updated: 2025/05/19 15:56:32 by tfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC_FILES = main.c \
 			parsing.c \
 			init.c \
 			routine.c \
+			routine_utils.c \
 			exit.c \
 			lib_utils/ft_atoi.c \
 			lib_utils/ft_isdigit.c \

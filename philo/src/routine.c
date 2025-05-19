@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:29:02 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/14 17:40:43 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/19 17:44:52 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,22 @@ void	*routine(void *arg)
 	if (philo->id % 2 == 0)
 		ft_usleep(philo->data->time_eat / 2);
 	philo->timer_to_die = get_current_time();
-	while (1)
+	while (all_philo_alive(philo) == 0 && finished_eating(philo) > 0)
 	{
-		pthread_mutex_lock(&philo->data->mu_fork_l);
+		think(philo, 1);
+		if (take_forks(philo) == 0)
+		{
+			eat(philo);
+		}
+		put_down_fork(philo);
+		ft_sleep(philo);
+	}
+	pthread_exit(NULL);
+}
+
+
+
+	/* 	pthread_mutex_lock(&philo->data->mu_fork_l);
 		if (philo->fork_l == true && *philo->fork_r == true)
 		{
 			print_logs(philo, FORK);
@@ -60,19 +73,12 @@ void	*routine(void *arg)
 			pthread_mutex_lock(&philo->data->mu_dead);
 			philo->data->dead = 1;
 			print_logs(philo, DIE);
-			pthread_mutex_unlock(&philo->data->mu_dead);
-		}
-		pthread_mutex_lock(&philo->data->mu_dead);
-		if (philo->data->dead == 1)
-		{
-			pthread_mutex_unlock(&philo->data->mu_dead);
-			return NULL;
-			
-		}
-		pthread_mutex_unlock(&philo->data->mu_dead);
-	}
-	pthread_exit(NULL);
-}
+			pthread_mutex_unlock(&philo->data->mu_dead); 
+		} */
+
+
+
+
 
 /* void	*routine(void *arg)
 {
