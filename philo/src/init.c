@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 13:32:23 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/19 16:21:50 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/20 17:55:50 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	init_data(t_data *data)
 		data->nb_eat = -1;
 	data->dead = 0;
 	data->timer = get_current_time();
+	data->nb_philo_init = 0;
 }
 
 static t_philo	*init_philo(t_data *data)
@@ -43,12 +44,14 @@ static t_philo	*init_philo(t_data *data)
 		philo[i].pt = -1;
 		philo[i].fork_l = true;
 		if (i == 0)
-			philo[0].fork_r = &philo[data->nb_philo].fork_l;
+			philo[0].fork_r = &philo[data->nb_philo - 1].fork_l;
 		else
 			philo[i].fork_r = &philo[i - 1].fork_l;
 		philo[i].timer_to_die = 0;
 		philo[i].timer_to_eat = 0;
 		philo[i].timer_to_sleep = 0;
+		philo[i].have_fork_l = false;
+		philo[i].have_fork_r = false;
 		i++;
 	}
 	return (philo);
@@ -60,12 +63,13 @@ static void	init_mutex(t_data *data)
 	pthread_mutex_init(&(data->mu_fork_l), NULL);
 	pthread_mutex_init(&(data->mu_fork_r), NULL);
 	pthread_mutex_init(&(data->mu_dead), NULL);
+	pthread_mutex_init(&(data->mu_init), NULL);
 }
 
 static int	init_threads(t_philo *philo)
 {
 	int	i;
-
+	
 	i = 0;
 	while (i < philo[0].data->nb_philo)
 	{
@@ -75,7 +79,17 @@ static int	init_threads(t_philo *philo)
 			return (EXIT_FAILURE);
 		}
 		i++;
+		if (i == philo->data->nb_philo)
+		{
+			pthread_mutex_lock(&philo->data->mu_init);
+			philo->data->nb_philo_init = i;
+			pthread_mutex_unlock(&philo->data->mu_init);
+		}
+
+		
 	}
+	// printf("================ start of philo %d\n", philo->id);
+
 	i = 0;
 	while (i < philo[0].data->nb_philo)
 	{

@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:05:59 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/19 18:14:13 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/20 17:12:29 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_data
 	int				argc;
 	char			**argv;
 	int				nb_philo;
+	int				nb_philo_init;
 	int				time_die;
 	int				time_eat;
 	int				time_sleep;
@@ -51,6 +52,7 @@ typedef struct s_data
 	pthread_mutex_t	mu_fork_l;
 	pthread_mutex_t	mu_fork_r;
 	pthread_mutex_t	mu_dead;
+	pthread_mutex_t	mu_init;
 }					t_data;
 
 typedef struct s_philo
@@ -60,6 +62,8 @@ typedef struct s_philo
 	pthread_t		pt;
 	bool			fork_l;
 	bool			*fork_r;
+	bool			have_fork_l;
+	bool			have_fork_r;
 	size_t			timer_to_die;
 	size_t			timer_to_eat;
 	size_t			timer_to_sleep;
@@ -88,9 +92,14 @@ void				print_logs(t_philo *philo, t_logs log);
 int					all_philo_alive(t_philo *philo);
 int					finished_eating(t_philo *philo);
 void				think(t_philo *philo, size_t nb_time_waiting);
-int					take_forks(t_philo *philo);
 void				eat(t_philo *philo);
-void				put_down_fork(t_philo *philo);
 void				ft_sleep(t_philo *philo);
+
+//==================routine_utils_fork=================//
+
+void				put_down_fork(t_philo *philo);
+int					take_fork_l(t_philo *philo);
+int					take_fork_r(t_philo *philo);
+int					take_forks(t_philo *philo);
 
 #endif
