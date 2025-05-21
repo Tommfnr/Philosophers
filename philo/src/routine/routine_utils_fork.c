@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:54 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/21 13:10:45 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/21 13:41:02 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	put_down_fork(t_philo *philo)
 	philo->have_fork_r = false;
 }
 
-int	take_fork_l(t_philo *philo)
+static int	take_fork_l(t_philo *philo)
 {
 	if (philo->have_fork_l == true)
 		return (1);
@@ -41,7 +41,7 @@ int	take_fork_l(t_philo *philo)
 	return (0);
 }
 
-int	take_fork_r(t_philo *philo)
+static int	take_fork_r(t_philo *philo)
 {
 	if (philo->have_fork_r == true)
 		return (1);

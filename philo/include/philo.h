@@ -6,27 +6,19 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:05:59 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/21 13:34:54 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/21 13:52:26 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-// # define RED "\033[31m"
-// # define GREEN "\033[32m"
-// # define YELLOW "\033[33m"
-// # define BLUE "\033[34m"
-// # define RESET "\033[0m"
-
-# include <limits.h>
 # include <pthread.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <sys/time.h>
-# include <unistd.h>
 
 typedef enum e_logs
 {
@@ -78,14 +70,6 @@ typedef struct s_philo
 
 void				destroy_and_free(t_philo *philo);
 
-//==================parsing============================//
-
-int					parsing(t_data data);
-
-//==================init===============================//
-
-t_philo				*init_main(t_data *data);
-
 //==================init_utils=========================//
 
 void				init_data(t_data *data);
@@ -93,6 +77,20 @@ t_philo				*init_philo(t_data *data);
 void				init_mutex(t_data *data);
 int					join_threads(t_philo *philo);
 int					init_threads(t_philo *philo);
+
+//==================init===============================//
+
+t_philo				*init_main(t_data *data);
+
+//==================parsing============================//
+
+int					parsing(t_data data);
+
+//==================print==============================//
+
+void				p_error_usage(void);
+void				print_logs(t_philo *philo, t_logs log);
+void				print_end(void);
 
 //==================routine============================//
 
@@ -109,14 +107,6 @@ void				ft_sleep(t_philo *philo);
 //==================routine_utils_fork=================//
 
 void				put_down_fork(t_philo *philo);
-int					take_fork_l(t_philo *philo);
-int					take_fork_r(t_philo *philo);
 int					take_forks(t_philo *philo);
-
-//==================print==============================//
-
-void				p_error_usage(void);
-void				print_logs(t_philo *philo, t_logs log);
-void				print_end(void);
 
 #endif
