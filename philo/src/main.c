@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:05:54 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/21 13:09:09 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/21 13:24:20 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	main(int argc, char **argv)
 		}
 		pthread_mutex_unlock(&data.mu_dead);
 	}
+	if (data.nb_all_eaten == data.nb_philo)
+		print_end();
 	destroy_and_free(philo);
 	return (0);
 }

@@ -6,37 +6,15 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:29:02 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/21 13:11:28 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/21 13:27:50 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib_utils.h"
 #include "philo.h"
 
-void	print_logs(t_philo *philo, t_logs log)
+static void	wait_for_start(t_philo *philo)
 {
-	size_t	current_time;
-
-	pthread_mutex_lock(&philo->data->mu_time);
-	current_time = get_current_time() - philo->data->timer;
-	pthread_mutex_unlock(&philo->data->mu_time);
-	if (log == FORK)
-		printf("%zu %d has taken a fork\n", current_time, philo->id);
-	if (log == EAT)
-		printf("%zu %d is eating\n", current_time, philo->id);
-	if (log == SLEEP)
-		printf("%zu %d is sleeping\n", current_time, philo->id);
-	if (log == THINKING)
-		printf("%zu %d is thinking\n", current_time, philo->id);
-	if (log == DIE)
-		printf("%zu %d died\n", current_time, philo->id);
-}
-
-void	*routine(void *arg)
-{
-	t_philo	*philo;
-
-	philo = (t_philo *)arg;
 	while (1)
 	{
 		ft_usleep(1);
@@ -48,6 +26,14 @@ void	*routine(void *arg)
 		}
 		pthread_mutex_unlock(&philo->data->mu_time);
 	}
+}
+
+void	*routine(void *arg)
+{
+	t_philo	*philo;
+
+	philo = (t_philo *)arg;
+	wait_for_start(philo);
 	if (philo->id % 2 == 0)
 		ft_usleep(philo->data->time_eat / 2);
 	philo->timer_to_die = get_current_time();

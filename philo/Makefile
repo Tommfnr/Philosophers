@@ -6,7 +6,7 @@
 #    By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/05 17:04:06 by tfournie          #+#    #+#              #
-#    Updated: 2025/05/21 13:00:06 by tfournie         ###   ########.fr        #
+#    Updated: 2025/05/21 13:32:37 by tfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SRC_FILES = main.c \
 			main_utils/parsing.c \
 			main_utils/init.c \
 			main_utils/exit.c \
+			main_utils/print.c \
+			main_utils/init_utils.c \
 			routine/routine.c \
 			routine/routine_utils.c \
 			routine/routine_utils_fork.c \
