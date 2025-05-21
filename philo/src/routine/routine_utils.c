@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:48:15 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/21 13:22:56 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/21 15:33:45 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,6 @@ void	eat(t_philo *philo)
 
 void	ft_sleep(t_philo *philo)
 {
-	int	max_time;
-
-	max_time = get_current_time() + philo->data->time_sleep;
-	while ((int)get_current_time() < max_time)
-	{
-		ft_usleep(5);
-		if (all_philo_alive(philo) != 0)
-			return ;
-	}
+	print_logs(philo, SLEEP);
+	ft_usleep(philo->data->time_sleep);
 }
