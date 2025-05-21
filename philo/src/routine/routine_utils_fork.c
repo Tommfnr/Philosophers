@@ -6,13 +6,13 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:54 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/20 17:46:37 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/21 13:10:45 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void put_down_fork(t_philo *philo)
+void	put_down_fork(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->mu_fork_l);
 	philo->fork_l = true;
@@ -24,8 +24,7 @@ void put_down_fork(t_philo *philo)
 	philo->have_fork_r = false;
 }
 
-// 0 si aucune, 1 si ok
-int take_fork_l(t_philo *philo)
+int	take_fork_l(t_philo *philo)
 {
 	if (philo->have_fork_l == true)
 		return (1);
@@ -42,13 +41,8 @@ int take_fork_l(t_philo *philo)
 	return (0);
 }
 
-// 0 si aucune, 1 si ok
-int take_fork_r(t_philo *philo)
+int	take_fork_r(t_philo *philo)
 {
-	// if (philo->id == 1)
-	// {
-	// 	printf("right fork state %d\n", *(philo->fork_r));
-	// }
 	if (philo->have_fork_r == true)
 		return (1);
 	pthread_mutex_lock(&philo->data->mu_fork_r);
@@ -64,17 +58,13 @@ int take_fork_r(t_philo *philo)
 	return (0);
 }
 
-int take_forks(t_philo *philo)
+int	take_forks(t_philo *philo)
 {
 	if (take_fork_l(philo) == 0)
 		return (0);
 	if (take_fork_r(philo) == 0)
 		return (0);
 	if (philo->have_fork_l == true && philo->have_fork_r == true)
-	{
-		// printf("------- philo %d has both forks\n", philo->id);
 		return (1);
-		
-	}
 	return (0);
 }

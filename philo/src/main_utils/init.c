@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 13:32:23 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/21 12:12:41 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/21 13:11:20 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	init_mutex(t_data *data)
 static int	init_threads(t_philo *philo)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < philo[0].data->nb_philo)
 	{
@@ -86,11 +86,7 @@ static int	init_threads(t_philo *philo)
 			philo->data->nb_philo_init = i;
 			pthread_mutex_unlock(&philo->data->mu_init);
 		}
-
-		
 	}
-	// printf("================ start of philo %d\n", philo->id);
-
 	i = 0;
 	while (i < philo[0].data->nb_philo)
 	{
@@ -110,7 +106,6 @@ t_philo	*init_main(t_data *data)
 
 	init_data(data);
 	philo = init_philo(data);
-	// printf("%zu\n", philo->timer_to_die);
 	if (philo == NULL)
 		return (NULL);
 	init_mutex(data);

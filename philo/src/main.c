@@ -6,12 +6,12 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:05:54 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/20 16:56:52 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/21 13:09:09 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
 #include "lib_utils.h"
+#include "philo.h"
 
 int	main(int argc, char **argv)
 {
@@ -34,7 +34,7 @@ int	main(int argc, char **argv)
 			pthread_mutex_unlock(&data.mu_dead);
 			break ;
 		}
-		pthread_mutex_unlock(&data.mu_dead);	
+		pthread_mutex_unlock(&data.mu_dead);
 	}
 	destroy_and_free(philo);
 	return (0);
