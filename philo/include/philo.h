@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:05:59 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/20 17:12:29 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/21 12:01:09 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <string.h>
 # include <sys/time.h>
 # include <unistd.h>
 
@@ -53,6 +54,9 @@ typedef struct s_data
 	pthread_mutex_t	mu_fork_r;
 	pthread_mutex_t	mu_dead;
 	pthread_mutex_t	mu_init;
+	pthread_mutex_t	mu_eat;
+	pthread_mutex_t	mu_eaten;
+	int				nb_all_eaten;
 }					t_data;
 
 typedef struct s_philo
@@ -67,6 +71,7 @@ typedef struct s_philo
 	size_t			timer_to_die;
 	size_t			timer_to_eat;
 	size_t			timer_to_sleep;
+	int				nb_eaten;
 }					t_philo;
 
 //==================exit===============================//

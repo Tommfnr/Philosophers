@@ -6,7 +6,7 @@
 #    By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/05 17:04:06 by tfournie          #+#    #+#              #
-#    Updated: 2025/05/20 15:47:41 by tfournie         ###   ########.fr        #
+#    Updated: 2025/05/21 13:00:06 by tfournie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,12 +19,12 @@ MAKEFLAGS += --no-print-directory
 INCLUDE_PATH = -I./include
 
 SRC_FILES = main.c \
-			parsing.c \
-			init.c \
+			main_utils/parsing.c \
+			main_utils/init.c \
+			main_utils/exit.c \
 			routine/routine.c \
 			routine/routine_utils.c \
 			routine/routine_utils_fork.c \
-			exit.c \
 			lib_utils/ft_atoi.c \
 			lib_utils/ft_isdigit.c \
 			lib_utils/ft_isnumber_pos.c \

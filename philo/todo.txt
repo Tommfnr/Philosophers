@@ -33,15 +33,6 @@ sleep()
 
 
 
-probleme avec la mort et besoin avec la nouriture
-
-enfaite pb avec les timing
-
-attendre tous les philo soit init nb_philo_init == nb_philo
-
 faire gaffe flags compilation
-
-
-optional number
 mettre propre
 refaire test

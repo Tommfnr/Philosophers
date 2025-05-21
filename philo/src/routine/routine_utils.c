@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:48:15 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/20 18:03:46 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:59:37 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,22 @@ int	all_philo_alive(t_philo *philo)
 	return (0);
 }
 
-// 1/true s'il n'y a pas de nb_eat, 0/false s'il n'a pas fini, 1/true s'il a fini
 int	finished_eating(t_philo *philo)
 {
-	static int	i = 0;
-
 	if (philo->data->nb_eat == -1)
-		return (true);
-	else if (i == philo->data->nb_eat)
-		return (true);
-	i++;
-	return (false);
+		return (0);
+	pthread_mutex_lock(&philo->data->mu_eat);
+	// printf("--------nb_all_eaten: %d\n", philo->data->nb_all_eaten);
+	if (philo->data->nb_all_eaten == philo->data->nb_philo)
+	{
+		pthread_mutex_unlock(&philo->data->mu_eat);
+		pthread_mutex_lock(&philo->data->mu_dead);
+		philo->data->dead = 1;
+		pthread_mutex_unlock(&philo->data->mu_dead);
+		return (1);
+	}
+	pthread_mutex_unlock(&philo->data->mu_eat);
+	return (0);
 }
 
 void think(t_philo *philo, size_t nb_time_waiting)
@@ -54,11 +59,17 @@ void think(t_philo *philo, size_t nb_time_waiting)
 
 void eat(t_philo *philo)
 {
+	if (philo->data->nb_eat != -1)
+		philo->nb_eaten++;
+	if (philo->nb_eaten == philo->data->nb_eat)
+	{
+		pthread_mutex_lock(&philo->data->mu_eat);
+		philo->data->nb_all_eaten++;
+		pthread_mutex_unlock(&philo->data->mu_eat);
+	}
 	print_logs(philo, EAT);
 	philo->timer_to_die = get_current_time();
 	ft_usleep(philo->data->time_eat);
-	// put_down_fork(philo);
-	// philo->timer_to_eat = 0;
 }
 
 void ft_sleep(t_philo *philo)

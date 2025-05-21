@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:29:02 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/20 17:38:06 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:55:27 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,13 @@ void	*routine(void *arg)
 	if (philo->id % 2 == 0)
 		ft_usleep(philo->data->time_eat / 2);
 	philo->timer_to_die = get_current_time();
-	while (all_philo_alive(philo) == 0 && finished_eating(philo) > 0)
+	while (all_philo_alive(philo) == 0 && finished_eating(philo) == 0)
 	{
 		think(philo, 1);
 		while (take_forks(philo) != 1 && all_philo_alive(philo) == 0)
 		{
 			ft_usleep(1);
 		}
-		// printf("%d f_l: %d f_r: %d == %d\n", philo->id, philo->have_fork_l, philo->have_fork_r, *(philo->fork_r));
 		if (philo->have_fork_l == true && philo->have_fork_r == true)
 		{
 			eat(philo);
