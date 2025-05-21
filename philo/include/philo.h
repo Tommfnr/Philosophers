@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:05:59 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/21 13:52:26 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/21 15:02:44 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ typedef struct s_data
 	size_t			timer;
 	int				dead;
 	pthread_mutex_t	mu_time;
-	pthread_mutex_t	mu_fork_l;
-	pthread_mutex_t	mu_fork_r;
 	pthread_mutex_t	mu_dead;
 	pthread_mutex_t	mu_init;
 	pthread_mutex_t	mu_eat;
@@ -58,6 +56,8 @@ typedef struct s_philo
 	pthread_t		pt;
 	bool			fork_l;
 	bool			*fork_r;
+	pthread_mutex_t	mu_fork_l;
+	pthread_mutex_t	*mu_fork_r;
 	bool			have_fork_l;
 	bool			have_fork_r;
 	size_t			timer_to_die;
@@ -72,14 +72,14 @@ void				destroy_and_free(t_philo *philo);
 
 //==================init_utils=========================//
 
-void				init_data(t_data *data);
-t_philo				*init_philo(t_data *data);
 void				init_mutex(t_data *data);
 int					join_threads(t_philo *philo);
 int					init_threads(t_philo *philo);
 
 //==================init===============================//
 
+void				init_data(t_data *data);
+t_philo				*init_philo(t_data *data);
 t_philo				*init_main(t_data *data);
 
 //==================parsing============================//

@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:15:40 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/21 13:21:28 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/21 14:15:48 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	print_logs(t_philo *philo, t_logs log)
 
 	pthread_mutex_lock(&philo->data->mu_time);
 	current_time = get_current_time() - philo->data->timer;
-	pthread_mutex_unlock(&philo->data->mu_time);
 	if (log == FORK)
 		printf("%zu %d has taken a fork\n", current_time, philo->id);
 	if (log == EAT)
@@ -38,6 +37,7 @@ void	print_logs(t_philo *philo, t_logs log)
 		printf("%zu %d is thinking\n", current_time, philo->id);
 	if (log == DIE)
 		printf("%zu %d died\n", current_time, philo->id);
+	pthread_mutex_unlock(&philo->data->mu_time);
 }
 
 void	print_end(void)

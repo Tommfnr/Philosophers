@@ -6,61 +6,16 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:29:54 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/21 13:35:07 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/05/21 15:02:13 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib_utils.h"
 #include "philo.h"
 
-void	init_data(t_data *data)
-{
-	data->nb_philo = ft_atoi(data->argv[1]);
-	data->time_die = ft_atoi(data->argv[2]);
-	data->time_eat = ft_atoi(data->argv[3]);
-	data->time_sleep = ft_atoi(data->argv[4]);
-	if (data->argv[5] != NULL)
-		data->nb_eat = ft_atoi(data->argv[5]);
-	else
-		data->nb_eat = -1;
-	data->dead = 0;
-	data->timer = get_current_time();
-	data->nb_philo_init = 0;
-	data->nb_all_eaten = 0;
-}
-
-t_philo	*init_philo(t_data *data)
-{
-	t_philo	*philo;
-	int		i;
-
-	i = 0;
-	philo = malloc(data->nb_philo * sizeof(t_philo));
-	if (!philo)
-		return (NULL);
-	while (i < data->nb_philo)
-	{
-		memset(&philo[i], 0, sizeof(t_philo));
-		philo[i].data = data;
-		philo[i].id = i + 1;
-		philo[i].pt = -1;
-		philo[i].fork_l = true;
-		if (i == 0)
-			philo[0].fork_r = &philo[data->nb_philo - 1].fork_l;
-		else
-			philo[i].fork_r = &philo[i - 1].fork_l;
-		philo[i].have_fork_l = false;
-		philo[i].have_fork_r = false;
-		i++;
-	}
-	return (philo);
-}
-
 void	init_mutex(t_data *data)
 {
 	pthread_mutex_init(&(data->mu_time), NULL);
-	pthread_mutex_init(&(data->mu_fork_l), NULL);
-	pthread_mutex_init(&(data->mu_fork_r), NULL);
 	pthread_mutex_init(&(data->mu_dead), NULL);
 	pthread_mutex_init(&(data->mu_init), NULL);
 	pthread_mutex_init(&(data->mu_eat), NULL);
