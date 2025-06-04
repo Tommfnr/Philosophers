@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 13:32:23 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/21 15:02:29 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/06/04 16:04:52 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,20 @@ t_philo	*init_philo(t_data *data)
 t_philo	*init_main(t_data *data)
 {
 	t_philo	*philo;
-
+	int init;
+	int i;
+	
 	init_data(data);
 	philo = init_philo(data);
 	if (philo == NULL)
 		return (NULL);
 	init_mutex(data);
-	if (init_threads(philo) == EXIT_FAILURE)
+	init = init_threads(philo);
+	if (init != data->nb_philo)
 	{
+		i = 0;
+		while (i++ < init)
+			pthread_mutex_destroy(&(philo->data->mu_dead));
 		free(philo);
 		return (NULL);
 	}

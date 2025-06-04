@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:29:54 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/21 15:02:13 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/06/04 16:24:09 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	init_mutex(t_data *data)
 	pthread_mutex_init(&(data->mu_eaten), NULL);
 }
 
-int	join_threads(t_philo *philo)
+int	join_threads(t_philo *philo, int init)
 {
 	int	i;
 
 	i = 0;
-	while (i < philo[0].data->nb_philo)
+	while (i < init)
 	{
 		if (pthread_join(philo[i].pt, NULL) != 0)
 		{
@@ -46,10 +46,10 @@ int	init_threads(t_philo *philo)
 	i = 0;
 	while (i < philo[0].data->nb_philo)
 	{
-		if (pthread_create(&philo[i].pt, NULL, routine, &philo[i]) != 0)
+		if (pthread_create(&philo[i].pt, NULL, routine, &philo[i]) != 0) // tester
 		{
 			printf("Error with the creation of the thread");
-			return (EXIT_FAILURE);
+			return (join_threads(philo, i));
 		}
 		i++;
 		if (i == philo->data->nb_philo)
@@ -59,5 +59,5 @@ int	init_threads(t_philo *philo)
 			pthread_mutex_unlock(&philo->data->mu_init);
 		}
 	}
-	return (join_threads(philo));
+	return (join_threads(philo, philo->data->nb_philo));
 }

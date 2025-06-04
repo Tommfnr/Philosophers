@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:05:59 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/21 15:02:44 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/06/04 16:06:10 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void				destroy_and_free(t_philo *philo);
 //==================init_utils=========================//
 
 void				init_mutex(t_data *data);
-int					join_threads(t_philo *philo);
+int					join_threads(t_philo *philo, int init);
 int					init_threads(t_philo *philo);
 
 //==================init===============================//
