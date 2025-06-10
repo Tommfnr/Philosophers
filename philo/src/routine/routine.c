@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:29:02 by tfournie          #+#    #+#             */
-/*   Updated: 2025/06/04 11:49:06 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:20:39 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,15 @@ static void	wait_for_start(t_philo *philo)
 	{
 		ft_usleep(1);
 		pthread_mutex_lock(&philo->data->mu_init);
-		if (philo->data->nb_philo_init != 0)
+		if (philo->data->nb_philo_init > 0)
 		{
 			pthread_mutex_unlock(&philo->data->mu_init);
-			break ;
+			break;
+		}
+		else if (philo->data->nb_philo_init == -1)
+		{
+			pthread_mutex_unlock(&philo->data->mu_init);
+			pthread_exit(NULL);
 		}
 		pthread_mutex_unlock(&philo->data->mu_init);
 	}

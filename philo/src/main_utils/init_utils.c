@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:29:54 by tfournie          #+#    #+#             */
-/*   Updated: 2025/06/04 16:24:09 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:29:05 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,14 @@ int	init_threads(t_philo *philo)
 	i = 0;
 	while (i < philo[0].data->nb_philo)
 	{
-		if (pthread_create(&philo[i].pt, NULL, routine, &philo[i]) != 0) // tester
+		if (pthread_create(&philo[i].pt, NULL, routine, &philo[i]) != 0)
 		{
-			printf("Error with the creation of the thread");
-			return (join_threads(philo, i));
+			printf("Error with the creation of the thread\n");
+			pthread_mutex_lock(&philo->data->mu_init);
+			philo->data->nb_philo_init = -1;
+			pthread_mutex_unlock(&philo->data->mu_init);
+			join_threads(philo, i);
+			return (EXIT_FAILURE);
 		}
 		i++;
 		if (i == philo->data->nb_philo)
@@ -59,5 +63,5 @@ int	init_threads(t_philo *philo)
 			pthread_mutex_unlock(&philo->data->mu_init);
 		}
 	}
-	return (join_threads(philo, philo->data->nb_philo));
+	return (join_threads(philo, i));
 }
