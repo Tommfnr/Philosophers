@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tomm <tomm@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 13:32:23 by tfournie          #+#    #+#             */
-/*   Updated: 2025/06/10 17:43:26 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/08/10 09:20:32 by tomm             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static void	init_one_philo(t_philo *philo, t_data *data, int i)
 	}
 	philo[i].have_fork_l = false;
 	philo[i].have_fork_r = false;
+	philo[i].done = false;
 }
 
 t_philo	*init_philo(t_data *data)
