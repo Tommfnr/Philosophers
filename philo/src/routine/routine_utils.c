@@ -6,7 +6,7 @@
 /*   By: tomm <tomm@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:48:15 by tfournie          #+#    #+#             */
-/*   Updated: 2025/08/10 09:29:55 by tomm             ###   ########.fr       */
+/*   Updated: 2025/08/13 11:29:57 by tomm             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	think(t_philo *philo, size_t nb_time_waiting)
 
 void	eat(t_philo *philo)
 {
+    all_philo_alive(philo);
     if (philo->data->nb_eat != -1)
         philo->nb_eaten++;
     if (philo->nb_eaten == philo->data->nb_eat && !philo->done)
