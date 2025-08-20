@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:29:02 by tfournie          #+#    #+#             */
-/*   Updated: 2025/08/19 13:11:13 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/08/20 10:53:57 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,5 @@ void	*routine(void *arg)
 		ft_sleep(philo);
 		i++;
 	}
-	pthread_exit(NULL);
+	return (NULL);
 }
