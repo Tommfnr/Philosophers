@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomm <tomm@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:05:59 by tfournie          #+#    #+#             */
-/*   Updated: 2025/08/10 09:18:25 by tomm             ###   ########.fr       */
+/*   Updated: 2025/08/19 13:14:22 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_philo
 	size_t			timer_to_eat;
 	size_t			timer_to_sleep;
 	int				nb_eaten;
-	bool	done;
+	bool			done;
 }					t_philo;
 
 //==================exit===============================//

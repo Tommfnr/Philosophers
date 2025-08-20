@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomm <tomm@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 13:32:23 by tfournie          #+#    #+#             */
-/*   Updated: 2025/08/13 11:42:31 by tomm             ###   ########.fr       */
+/*   Updated: 2025/08/20 08:48:27 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,26 @@
 
 void	init_data(t_data *data)
 {
-	data->nb_philo = ft_atoi(data->argv[1]);
-	data->time_die = ft_atoi(data->argv[2]);
-	data->time_eat = ft_atoi(data->argv[3]);
-	data->time_sleep = ft_atoi(data->argv[4]);
+	int error;
+	data->nb_philo = ft_atoi(data->argv[1], &error);
+	data->time_die = ft_atoi(data->argv[2], &error);
+	data->time_eat = ft_atoi(data->argv[3], &error);
+	data->time_sleep = ft_atoi(data->argv[4], &error);
 	if (data->argv[5] != NULL)
-		data->nb_eat = ft_atoi(data->argv[5]);
+		data->nb_eat = ft_atoi(data->argv[5], &error);
 	else
 		data->nb_eat = -1;
+	if (error)
+	{
+		p_error_usage();
+		exit(EXIT_FAILURE);
+	}
+	if (data->nb_philo < 1 || data->time_die < 0 || data->time_eat < 0
+		|| data->time_sleep < 0 || (data->nb_eat < 0 && data->argv[5] != NULL))
+	{
+		p_error_usage();
+		exit(EXIT_FAILURE);
+	}
 	data->dead = 0;
 	data->timer = get_current_time();
 	data->nb_philo_init = 0;

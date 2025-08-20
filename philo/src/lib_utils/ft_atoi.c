@@ -6,11 +6,14 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 11:44:08 by tfournie          #+#    #+#             */
-/*   Updated: 2025/05/13 11:54:40 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/08/20 08:31:12 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib_utils.h"
+#include "lib_utils.h" // si tu as tes propres utilitaires
+#include <ctype.h>     // pour isdigit
+#include <limits.h>
 
 static int	ft_skip_whitespace_and_sign(const char *nptr, int *sign)
 {
@@ -27,30 +30,37 @@ static int	ft_skip_whitespace_and_sign(const char *nptr, int *sign)
 			*sign = 1;
 		i++;
 	}
+	else
+		*sign = 1;
 	return (i);
 }
 
-long	ft_atoi(const char *nptr)
+unsigned long long	ft_atoi(const char *nptr, int *error)
 {
-	int			i;
-	int			sign;
-	long long	res;
-
-	sign = 1;
+	unsigned long long	res;
+	unsigned			digit;
+	int					i;
+	int					sign;
+	
 	i = ft_skip_whitespace_and_sign(nptr, &sign);
 	res = 0;
-	if (!ft_isdigit(nptr[i]))
-		return ((long)INT_MAX + 1);
-	while (nptr[i] && ft_isdigit(nptr[i]))
+	if (error)
+		*error = 1;
+	if (sign == -1)
+		return (0);
+	if (!isdigit(nptr[i]))
+		return (0);
+	while (nptr[i] && isdigit(nptr[i]))
 	{
-		res = res * 10 + (nptr[i] - '0');
-		if (res * sign > INT_MAX)
-			return ((long)INT_MAX + 1);
-		if (res * sign < INT_MIN)
-			return ((long)INT_MIN - 1);
+		digit = nptr[i] - '0';
+		if (res > (ULLONG_MAX - digit) / 10)
+			return (0);
+		res = res * 10 + digit;
 		i++;
 	}
 	if (nptr[i] != '\0')
-		return ((long)INT_MAX + 1);
-	return ((int)(res * sign));
+		return (0);
+	if (error)
+		*error = 0;
+	return (res);
 }
