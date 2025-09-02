@@ -6,14 +6,14 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 17:29:02 by tfournie          #+#    #+#             */
-/*   Updated: 2025/08/20 10:53:57 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:41:44 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib_utils.h"
 #include "philo.h"
 
-static void	wait_for_start(t_philo *philo)
+static int	wait_for_start(t_philo *philo)
 {
 	while (1)
 	{
@@ -27,10 +27,11 @@ static void	wait_for_start(t_philo *philo)
 		else if (philo->data->nb_philo_init == -1)
 		{
 			pthread_mutex_unlock(&philo->data->mu_init);
-			pthread_exit(NULL);
+			return (-1);
 		}
 		pthread_mutex_unlock(&philo->data->mu_init);
 	}
+	return (1);
 }
 
 void	*routine(void *arg)
@@ -39,7 +40,8 @@ void	*routine(void *arg)
 	int		i;
 
 	philo = (t_philo *)arg;
-	wait_for_start(philo);
+	if (wait_for_start(philo) == -1)
+		return (NULL);
 	philo->timer_to_die = get_current_time();
 	i = 0;
 	while (all_philo_alive(philo) == 0 && finished_eating(philo) == 0)

@@ -6,7 +6,7 @@
 /*   By: tfournie <tfournie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:15:40 by tfournie          #+#    #+#             */
-/*   Updated: 2025/06/10 18:25:34 by tfournie         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:44:11 by tfournie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ void	print_logs(t_philo *philo, t_logs log)
 
 void	print_end(void)
 {
-	printf("All philosopher has finish eaten.\n");
+	printf("All philosophers have finish eating.\n");
 }
